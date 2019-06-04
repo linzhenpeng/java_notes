@@ -847,6 +847,8 @@ Stream中有两个个方法collect和collectingAndThen用于对流中的数据�
 
 [Java 8 新特性：接口的静态方法和默认方法](https://blog.csdn.net/sun_promise/article/details/51220518)
 
+
+
 ## Optional
 
 [JDK1.8新特性(三): 方法引用 ::和Optional](https://blog.csdn.net/vbirdbest/article/details/80207673)

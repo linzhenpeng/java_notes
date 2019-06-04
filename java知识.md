@@ -2,10 +2,6 @@
 
 [https://blog.csdn.net/mmoren/article/details/79185862](https://blog.csdn.net/mmoren/article/details/79185862)
 
-#### `transient` 
-
-java语言的关键字，变量修饰符，如果用transient声明一个实例变量，当对象存储时，它的值不需要维持。换句话来说就是，用transient关键字标记的成员变量不参与序列化过程。
-
 #### Java的深拷贝和浅拷贝
 
 http://www.cnblogs.com/ysocean/p/8482979.html
@@ -13,10 +9,6 @@ http://www.cnblogs.com/ysocean/p/8482979.html
 #### Java泛型中T和问号（通配符）的区别
 
 https://blog.csdn.net/ikownyou/article/details/65630385
-
-#### Java BigDecimal
-
-https://www.cnblogs.com/LeoBoy/p/6056394.html
 
 #### java 位运算符和位移运算符
 
@@ -73,23 +65,11 @@ https://www.cnblogs.com/luckgood/category/1209455.html
 
 [Java字节码结构剖析一：常量池](https://blog.csdn.net/u013096088/article/details/83047282#commentBox)
 
-
-
-#### System类
-
-#### String类(重点,特别是在内存中的表现)
-
-#### Object类
-
-https://www.cnblogs.com/ysocean/p/8419559.html
-
-#### Class类	
+​	
 
 #### 异常
 
-#### Timer(定时任务)
 
-#### StringBuffer 和StringBuilder
 
 
 
