@@ -15,7 +15,7 @@ java学习笔记 用于记录java中的要点、重点和容易错的点,方便�
 
 [虚拟机](https://github.com/linzhenpeng/java_notes/blob/master/%E8%99%9A%E6%8B%9F%E6%9C%BA.md)
 
-[类加载过程](https://github.com/linzhenpeng/java_notes/blob/类加载过程.md)
+[类加载过程](https://github.com/linzhenpeng/java_notes/blob/master/类加载过程.md)
 
 [日期类相关](https://github.com/linzhenpeng/java_notes/blob/master/%E6%97%A5%E6%9C%9F.md)
 
