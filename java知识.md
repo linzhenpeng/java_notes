@@ -41,6 +41,8 @@ https://blog.csdn.net/javazejian/article/details/72772461
 
 #### 理解内存屏障/内存栅栏
 
+https://www.cnblogs.com/flystar32/p/6684593.html
+
 简单来说内存屏障（Memory Barrier，或内存栅栏，Memory Fence）就是从本地或工作内存到主存之间的拷贝动作。如下图：
 
 ![](F:\git\java_notes\images\java知识\20181029164441_67322.png)
@@ -75,6 +77,10 @@ public class CPUDemo {
 
 mainmemory变量是从主存中加载的，肯定不如localmemory赋值快，localmemory的赋值操作可是在寄存器中操作的，所以就发生了乱序：
 int localmemory = 2;先执行完，然后再执行完int sum = mainmemory +1;
+
+#### Java程序执行流程
+
+https://blog.csdn.net/sinat_33087001/article/details/76977437
 
 
 
