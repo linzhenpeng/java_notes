@@ -82,7 +82,9 @@ int localmemory = 2;先执行完，然后再执行完int sum = mainmemory +1;
 
 https://blog.csdn.net/sinat_33087001/article/details/76977437
 
+#### this逃逸问题
 
+https://www.cnblogs.com/jian0110/p/9369096.html
 
 
 
