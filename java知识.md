@@ -1,6 +1,31 @@
+-   [CAS以及ABA问题](#cas以及aba问题)
+-   [Java的深拷贝和浅拷贝](#java的深拷贝和浅拷贝)
+-   [Java泛型中T和问号（通配符）的区别](#java泛型中t和问号通配符的区别)
+-   [java 位运算符和位移运算符](#java-位运算符和位移运算符)
+-   [静态方法和普通方法的区别](#静态方法和普通方法的区别)
+-   [Java快速失败（fail-fast）和安全失败（fail-safe）区别](#java快速失败fail-fast和安全失败fail-safe区别)
+-   [原子性/可见性/有序性](#原子性可见性有序性)
+-   [指令重排](#指令重排)
+-   [理解内存屏障/内存栅栏](#理解内存屏障内存栅栏)
+-   [happens-before](#happens-before)
+-   [CPU乱序执行是正常，不乱序才是有问题呢！](#cpu乱序执行是正常不乱序才是有问题呢)
+-   [Java程序执行流程](#java程序执行流程)
+-   [this逃逸问题](#this逃逸问题)
+-   [java的基本思想](#java的基本思想)
+-   [java 执行过程](#java-执行过程)
+-   [装箱和拆箱(Integer)](#装箱和拆箱integer)
+-   [日期操作](#日期操作)
+-   [并发容器](#并发容器)
+-   [序列化和反序列化](#序列化和反序列化)
+-   [JDK源码解析](#jdk源码解析)
+-   [JVM 工作原理](#jvm-工作原理)
+-   [JVM笔记](#jvm笔记)
+-   [java字节码结构](#java字节码结构)
+-   [异常](#异常)
+
 #### CAS以及ABA问题
 
-[https://blog.csdn.net/mmoren/article/details/79185862](https://blog.csdn.net/mmoren/article/details/79185862)
+<https://blog.csdn.net/mmoren/article/details/79185862>
 
 #### Java的深拷贝和浅拷贝
 
@@ -12,13 +37,13 @@ https://blog.csdn.net/ikownyou/article/details/65630385
 
 #### java 位运算符和位移运算符
 
-https://www.cnblogs.com/lichengze/p/5713409.html 
+https://www.cnblogs.com/lichengze/p/5713409.html
 
-https://www.cnblogs.com/hongten/p/hongten_java_yiweiyunsuangfu.html
+https://www.cnblogs.com/hongten/p/hongten\_java\_yiweiyunsuangfu.html
 
 #### 静态方法和普通方法的区别
 
-https://blog.csdn.net/qq_28511781/article/details/71405945
+https://blog.csdn.net/qq\_28511781/article/details/71405945
 
 #### Java快速失败（fail-fast）和安全失败（fail-safe）区别
 
@@ -27,7 +52,8 @@ https://blog.csdn.net/u010889616/article/details/79954413
 #### 原子性/可见性/有序性
 
 **原子性**
-原子性指的是一个操作是不可中断的，即使是在多线程环境下，一个操作一旦开始就不会被其他线程影响。比如对于一个静态变量int x，两条线程同时对他赋值，线程A赋值为1，而线程B赋值为2，不管线程如何运行，最终x的值要么是1，要么是2，线程A和线程B间的操作是没有干扰的，这就是原子性操作，不可被中断的特点。有点要注意的是，对于32位系统的来说，long类型数据和double类型数据(对于基本数据类型，byte,short,int,float,boolean,char读写是原子操作)，它们的读写并非原子性的，也就是说如果存在两条线程同时对long类型或者double类型的数据进行读写是存在相互干扰的，因为对于32位虚拟机来说，每次原子读写是32位的，而long和double则是64位的存储单元，这样会导致一个线程在写时，操作完前32位的原子操作后，轮到B线程读取时，恰好只读取到了后32位的数据，这样可能会读取到一个既非原值又不是线程修改值的变量，它可能是“半个变量”的数值，即64位数据被两个线程分成了两次读取。但也不必太担心，因为读取到“半个变量”的情况比较少见，至少在目前的商用的虚拟机中，几乎都把64位的数据的读写操作作为原子操作来执行，因此对于这个问题不必太在意，知道这么回事即可。
+原子性指的是一个操作是不可中断的，即使是在多线程环境下，一个操作一旦开始就不会被其他线程影响。比如对于一个静态变量int
+x，两条线程同时对他赋值，线程A赋值为1，而线程B赋值为2，不管线程如何运行，最终x的值要么是1，要么是2，线程A和线程B间的操作是没有干扰的，这就是原子性操作，不可被中断的特点。有点要注意的是，对于32位系统的来说，long类型数据和double类型数据(对于基本数据类型，byte,short,int,float,boolean,char读写是原子操作)，它们的读写并非原子性的，也就是说如果存在两条线程同时对long类型或者double类型的数据进行读写是存在相互干扰的，因为对于32位虚拟机来说，每次原子读写是32位的，而long和double则是64位的存储单元，这样会导致一个线程在写时，操作完前32位的原子操作后，轮到B线程读取时，恰好只读取到了后32位的数据，这样可能会读取到一个既非原值又不是线程修改值的变量，它可能是“半个变量”的数值，即64位数据被两个线程分成了两次读取。但也不必太担心，因为读取到“半个变量”的情况比较少见，至少在目前的商用的虚拟机中，几乎都把64位的数据的读写操作作为原子操作来执行，因此对于这个问题不必太在意，知道这么回事即可。
 
 **可见性**
 理解了指令重排现象后，可见性容易了，可见性指的是当一个线程修改了某个共享变量的值，其他线程是否能够马上得知这个修改的值。对于串行程序来说，可见性是不存在的，因为我们在任何一个操作中修改了某个变量的值，后续的操作中都能读取这个变量值，并且是修改过的新值。但在多线程环境中可就不一定了，前面我们分析过，由于线程对共享变量的操作都是线程拷贝到各自的工作内存进行操作后才写回到主内存中的，这就可能存在一个线程A修改了共享变量x的值，还未写回主内存时，另外一个线程B又对主内存中同一个共享变量x进行操作，但此时A线程工作内存中共享变量x对线程B来说并不可见，这种工作内存与主内存同步延迟现象就造成了可见性问题，另外指令重排以及编译器优化也可能导致可见性问题，通过前面的分析，我们知道无论是编译器优化还是处理器优化的重排现象，在多线程环境下，确实会导致程序轮序执行的问题，从而也就导致可见性问题。
@@ -43,7 +69,8 @@ https://blog.csdn.net/javazejian/article/details/72772461
 
 https://www.cnblogs.com/flystar32/p/6684593.html
 
-简单来说内存屏障（Memory Barrier，或内存栅栏，Memory Fence）就是从本地或工作内存到主存之间的拷贝动作。如下图：
+简单来说内存屏障（Memory Barrier，或内存栅栏，Memory
+Fence）就是从本地或工作内存到主存之间的拷贝动作。如下图：
 
 ![](F:\git\java_notes\images\java知识\20181029164441_67322.png)
 
@@ -65,7 +92,7 @@ https://www.cnblogs.com/flystar32/p/6684593.html
 指令流水线并不是串行的，并不会因为一个耗时很长的指令在"执行"阶段呆很长时间，而导致后续的指令都卡在"执行"之前的阶段上。
 相反，流水线是并行的，多个指令可以同时处于同一个阶段，只要CPU内部相应的处理部件未被占满即可。比如说CPU有一个加法器和一个除法器，那么一条加法指令和一条除法指令就可能同时处于"执行"阶段，而两条加法指令在"执行"阶段就只能串行工作。相比于串行方式，流水线像这样并行的工作，效率是非常高的。
 
-```java
+``` {.java}
 public class CPUDemo {
     static int mainmemory = 1;
     public static void main(String[] args) {
@@ -80,28 +107,25 @@ int localmemory = 2;先执行完，然后再执行完int sum = mainmemory +1;
 
 #### Java程序执行流程
 
-https://blog.csdn.net/sinat_33087001/article/details/76977437
+https://blog.csdn.net/sinat\_33087001/article/details/76977437
 
 #### this逃逸问题
 
 https://www.cnblogs.com/jian0110/p/9369096.html
 
-
-
---------------
+------------------------------------------------------------------------
 
 #### java的基本思想
 
 #### java 执行过程
 
-https://blog.csdn.net/sinat_33087001/article/details/76977437
+https://blog.csdn.net/sinat\_33087001/article/details/76977437
 
 #### 装箱和拆箱(Integer)
 
 #### 日期操作
 
 #### 并发容器
-
 
 http://benjaminwhx.com/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/page/2/
 
@@ -115,7 +139,7 @@ http://www.cnblogs.com/ysocean/p/6870069.html
 
 https://www.cnblogs.com/ysocean/tag/JDK%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/
 
-####  JVM 工作原理
+#### JVM 工作原理
 
 https://www.cnblogs.com/lishun1005/p/6019678.html
 
@@ -123,17 +147,10 @@ https://www.cnblogs.com/lishun1005/p/6019678.html
 
 https://www.cnblogs.com/luckgood/category/1209455.html
 
-
-
 #### java字节码结构
 
 [Java字节码结构剖析一：常量池](https://blog.csdn.net/u013096088/article/details/83047282#commentBox)
 
-​	
+​
 
 #### 异常
-
-
-
-
-
