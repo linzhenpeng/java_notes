@@ -25,3 +25,10 @@ java学习笔记 用于记录java中的要点、重点和容易错的点,方便�
 
 
 
+ps :
+
+Typora 是一款不错的md文件编辑器
+
+md文件目录可以使用  pandoc    [https://github.com/jgm/pandoc/releases](https://link.jianshu.com/?t=https://github.com/jgm/pandoc/releases)
+
+命令:pandoc -s --toc --toc-depth=4 文件名.md -o 文件名.md  
